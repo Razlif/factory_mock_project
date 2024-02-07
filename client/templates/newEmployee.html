@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add New Employee</title>
+    </head>
+    <body onload="populateDeptDropDown()">
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+
+        <form id="addEmployeeForm">
+            First Name: <input type="text" id="firstName" name="firstName" required>
+            Last Name: <input type="text" id="lastName" name="lastName" required>
+            Start Year: <input type="number" id="startYear" name="startYear" required>
+            Department: <select id="deptSelector" name="deptSelector" required></select>
+            <button type="submit">Add Employee</button>
+        </form>
+
+        <div id="messages"></div>
+
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('addEmployeeForm');
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    addEmployee()
+                })
+            })
+        </script>
+        <script src="../JS/employees.js"></script>
+    </body>
+</html>

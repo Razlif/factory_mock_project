@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add New Department</title>
+    </head>
+    <body>
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+
+        <form id="newDeptForm">
+            Department Name:<input type="text" id="deptName" required>
+            <button type="submit">Add Department</button>
+        </form>
+
+        <div id="messages"></div>
+
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('newDeptForm');
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    addDept()
+                })
+            })
+        </script>
+        <script src="../JS/depts.js"></script>
+    </body>
+</html>

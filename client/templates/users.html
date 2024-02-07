@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Users Page</title>
+        
+    </head>
+    <body onload="loadUsersPage()">
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+        <h1>Users Page</h1>
+
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Max Actions</th>
+                    <th>Actions Left Today</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+        </script>
+        <script src="../JS/users.js"></script>
+    </body>
+</html>

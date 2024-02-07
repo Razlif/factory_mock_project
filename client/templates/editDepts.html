@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Department</title>
+    </head>
+    <body onload="loadEditDeptPage()">
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+
+        <form id="editDeptForm">
+            Department ID: <p id="deptID"></p>
+            Department Name: <input type="text" id="deptName" required>
+            Manager: <select id="managerSelector"></select>
+            <button type="submit">Edit Department</button>
+        </form><br><br><br>
+
+        Select Employee:<select id="empSelector"> </select><br>
+        
+        <button onclick="assignToDept()">Add Employee To Department</button>
+
+        <div id="messages"></div>
+        
+
+
+        <br><br><button onclick="deleteDept()">Delete Department</button>
+        <button onclick="window.location.href='departments.html'" >Cancel</button>
+
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('editDeptForm')
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    editDept()
+                })
+            })
+        </script>
+        <script src="../JS/depts.js"></script>
+    </body>
+</html>

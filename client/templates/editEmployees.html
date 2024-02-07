@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Employee</title>
+    </head>
+    <body onload="loadEditEmployeePage()">
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+
+        <form id="editEmployeeForm">
+            Employee ID: <p id="employeeID"></p>
+            First Name: <input type="text" id="firstName" name="firstName" required>
+            Last Name: <input type="text" id="lastName" name="lastName" required>
+            Start Year: <input type="number" id="startYear" name="startYear" required>
+            Department: <select id="deptSelector" name="deptSelector" required></select>
+            <button type="submit">Edit Employee</button>
+        </form>
+
+        <div id="messages"></div>
+        
+        <h1>Assigned To Shifts</h1>
+        <table id="shiftsTable"></table>
+
+        <h1>Available Shifts</h1>
+        <table id="availableShiftsTable"></table>
+
+        <br><br><button onclick="deleteEmployee()">Delete Employee</button>
+        <button onclick="window.location.href='employees.html'" >Cancel</button>
+
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('editEmployeeForm');
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    editEmployee()
+                })
+            })
+        </script>
+        <script src="../JS/employees.js"></script>
+    </body>
+</html>

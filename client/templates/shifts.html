@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shifts Page</title>
+        
+    </head>
+    <body onload="loadShiftsPage()">
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'departments.html'">Departments page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+        <h1>Shifts Page</h1>
+
+        <h1>Add Shift</h1>
+        <form id="addShiftForm">
+            <label for="shiftDate">Shift Date:</label>
+            <input type="date" id="shiftDate" name="shiftDate" required>
+
+            <label for="startingHour">Starting Hour:</label>
+            <select id="startingHour" name="startingHour" required>
+                <option value="8">8:00</option>
+                <option value="9">9:00</option>
+                <option value="10">10:00</option>
+                <option value="11">11:00</option>
+                <option value="12">12:00</option>
+            </select>
+
+            <select id="endingHour" name="endingHour" required>
+                <option value="15">15:00</option>
+                <option value="16">16:00</option>
+                <option value="17">17:00</option>
+                <option value="18">18:00</option>
+                <option value="19">19:00</option>
+            </select>
+
+            <button type="submit">Add Shift</button>
+
+        </form>
+
+        <h1>Existing Shifts</h1>
+
+        <div id="messages"></div>
+
+        <div id="shiftContainer"></div>
+        <br>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Shift</th>
+                    <th>Assigned To</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+            document.addEventListener('DOMContentLoaded', function() {
+                // Event listener for the Add Shift form
+                document.getElementById('addShiftForm').addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    createShift()
+                })
+
+            })
+        </script>
+        <script src="../JS/shitfs.js"></script>
+    </body>
+</html>

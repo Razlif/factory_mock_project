@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Departments Page</title>
+        
+    </head>
+    <body onload="loadDeptPage()">
+        
+        <p id="helloName"></p><br><br>
+        <button onclick="window.location.href = 'employees.html'">Employees page</button>
+        <button onclick="window.location.href = 'shifts.html'">Shifts page</button>
+        <button onclick="window.location.href = 'users.html'">Users page</button>
+        <button onclick="window.location.href = 'login.html'">Logout</button>
+        <br><br><br>
+
+        <h1>Department Page</h1>
+
+        <button onclick="window.location.href = 'newDept.html'">Add Department</button>
+
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th> Department Name </th>
+                    <th> Manager </th>
+                    <th> Employees </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div id="messages"></div>
+
+        <script>
+            const helloName = document.getElementById('helloName')
+            helloName.textContent = ` Hello ${sessionStorage['userName']}`
+        </script>
+        <script src="../JS/depts.js"></script>
+    </body>
+</html>
