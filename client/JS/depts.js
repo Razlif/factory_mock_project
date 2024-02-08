@@ -1,6 +1,6 @@
 //load dept page
 async function loadDeptPage() {
-    const response = await fetch('http://127.0.0.1:8000/dept/allData' , {
+    const response = await fetch('/dept/allData' , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -45,7 +45,7 @@ async function loadDeptPage() {
 
 // add all employees to the dropdown menu
 async function populateAllEmpDropDown() {
-    const response = await fetch(`http://127.0.0.1:8000/team/getAllEmployees` , {
+    const response = await fetch(`/team/getAllEmployees` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -66,7 +66,7 @@ async function populateAllEmpDropDown() {
 
 // add unassigned employees to the dropdown menu
 async function populateEmpDropDown(deptID) {
-    const response = await fetch(`http://127.0.0.1:8000/team/unassignedByDeptID/${deptID}` , {
+    const response = await fetch(`/team/unassignedByDeptID/${deptID}` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -87,7 +87,7 @@ async function populateEmpDropDown(deptID) {
 
 // add departments to the dropdown menu
 async function populateManagerDropDown(deptID) {
-    const response = await fetch(`http://127.0.0.1:8000/team/byDeptID/${deptID}` , {
+    const response = await fetch(`/team/byDeptID/${deptID}` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -119,7 +119,7 @@ async function addDept() {
         name:deptName
     }
     console.log(newDept)
-    const response = await fetch('http://127.0.0.1:8000/dept/create', {
+    const response = await fetch('/dept/create', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -151,7 +151,7 @@ async function loadEditDeptPage() {
     // get the employee data
     const currentURL = new URL(window.location.href)
     const deptID = currentURL.searchParams.get('id')
-    const response = await fetch(`http://127.0.0.1:8000/dept/byID/${deptID}` , {
+    const response = await fetch(`/dept/byID/${deptID}` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -181,7 +181,7 @@ async function loadEditDeptPage() {
 async function assignToDept() {
     const deptID = document.getElementById('deptID').textContent
     const employeeID = document.getElementById('empSelector').value
-    const response = await fetch('http://127.0.0.1:8000/team/update', {
+    const response = await fetch('/team/update', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
@@ -218,7 +218,7 @@ async function editDept() {
         manager:managerID !== 'none'? managerID : null,
     }
     console.log(updatedDept)
-    const response = await fetch('http://127.0.0.1:8000/dept/update', {
+    const response = await fetch('/dept/update', {
         method:'PATCH',
         headers:{
             'Content-Type':'application/json',
@@ -244,7 +244,7 @@ async function editDept() {
 
 async function deleteDept() {
     const deptID = document.getElementById('deptID').textContent
-    const response = await fetch(`http://127.0.0.1:8000/dept/delete/${deptID}`, {
+    const response = await fetch(`/dept/delete/${deptID}`, {
         method:'DELETE',
         headers:{
             'Content-Type':'application/json',

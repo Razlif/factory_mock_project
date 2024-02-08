@@ -1,7 +1,7 @@
 
 //load users page
 async function loadUsersPage() {
-    const response = await fetch('http://127.0.0.1:8000/users/getAll' , {
+    const response = await fetch('/users/getAll' , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -38,7 +38,7 @@ async function login() {
         username:username,
         email:email
     }
-    const response = await fetch('http://127.0.0.1:8000/users/login', {
+    const response = await fetch('/users/login', {
         method:'POST',
         headers: {
             'Content-Type':'application/json'
@@ -47,15 +47,26 @@ async function login() {
     })
     if (response.ok) {
         const userData= await response.json()
-
-        sessionStorage['userName'] = userData.name
-        sessionStorage['customID'] = userData.customID
-        sessionStorage['accessToken'] = userData.accessToken
-        window.location.href = 'employees.html'
-        console.log(userData)
-        console.log(sessionStorage['userName'])
+        if (userData.message) {
+            const messages = document.getElementById('messages')
+            messages.innerHTML = ''
+            const message = document.createElement('div')
+            message.textContent = userData.message
+            messages.appendChild(message)
+        } else {
+            sessionStorage['userName'] = userData.name
+            sessionStorage['customID'] = userData.customID
+            sessionStorage['accessToken'] = userData.accessToken
+            window.location.href = 'employees.html'
+            console.log(userData)
+            console.log(sessionStorage['userName'])
+        }
     } else {
-        window.location.href = './login.html'
+        const messages = document.getElementById('messages')
+        messages.innerHTML = ''
+        const message = document.createElement('div')
+        message.textContent = "can not log in"
+        messages.appendChild(userData.message)
     }
 
 }

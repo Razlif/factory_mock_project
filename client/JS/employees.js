@@ -2,7 +2,7 @@
 
 // load employees page
 async function loadEmployeesPage() {
-    const response = await fetch('http://127.0.0.1:8000/team/getAll' , {
+    const response = await fetch('/team/getAll' , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -56,7 +56,7 @@ async function loadEmployeesPage() {
 
 // add departments to the dropdown menu
 async function populateDeptDropDown() {
-    const allData = await fetch('http://127.0.0.1:8000/dept/allData' , {
+    const allData = await fetch('/dept/allData' , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -105,7 +105,7 @@ async function addEmployee() {
         deptID
     }
     console.log(newEmployee)
-    const response = await fetch('http://127.0.0.1:8000/team/create', {
+    const response = await fetch('/team/create', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -138,7 +138,7 @@ async function loadEditEmployeePage() {
     // get the employee data
     const currentURL = new URL(window.location.href)
     const employeeID = currentURL.searchParams.get('id')
-    const response = await fetch(`http://127.0.0.1:8000/team/byID/${employeeID}` , {
+    const response = await fetch(`/team/byID/${employeeID}` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -159,7 +159,7 @@ async function loadEditEmployeePage() {
         deptSelector.value = employeeData.deptID
     
         // get the shifts
-        const shiftsResponse = await fetch(`http://127.0.0.1:8000/shifts/getAll` , {
+        const shiftsResponse = await fetch(`/shifts/getAll` , {
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -213,7 +213,7 @@ async function loadEditEmployeePage() {
 }
 
 async function assignToShift(shiftID, employeeID) {
-    const response = await fetch('http://127.0.0.1:8000/shifts/assign', {
+    const response = await fetch('/shifts/assign', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
@@ -241,7 +241,7 @@ async function assignToShift(shiftID, employeeID) {
 }
 
 async function unassignFromShift(shiftID, employeeID) {
-    const response = await fetch('http://127.0.0.1:8000/shifts/unassign', {
+    const response = await fetch('/shifts/unassign', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
@@ -282,7 +282,7 @@ async function editEmployee() {
         deptID
     }
     console.log(updatedEmployee )
-    const response = await fetch('http://127.0.0.1:8000/team/update', {
+    const response = await fetch('/team/update', {
         method:'PATCH',
         headers:{
             'Content-Type':'application/json',
@@ -307,7 +307,7 @@ async function editEmployee() {
 }
 
 async function deleteEmployee() {
-    const response = await fetch(`http://127.0.0.1:8000/team/delete/${document.getElementById('employeeID').textContent}`, {
+    const response = await fetch(`/team/delete/${document.getElementById('employeeID').textContent}`, {
         method:'DELETE',
         headers:{
             'Content-Type':'application/json',

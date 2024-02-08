@@ -1,7 +1,7 @@
 
 //load shifts page
 async function loadShiftsPage() {
-    const response = await fetch('http://127.0.0.1:8000/shifts/getAll' , {
+    const response = await fetch('/shifts/getAll' , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -48,7 +48,7 @@ async function loadShiftsPage() {
 
 async function displayShift(shiftID) {
     console.log('display shift selected')
-    const response = await fetch(`http://127.0.0.1:8000/shifts/byID/${shiftID}` , {
+    const response = await fetch(`/shifts/byID/${shiftID}` , {
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -58,7 +58,7 @@ async function displayShift(shiftID) {
     })
     if (response.ok) {
         const myShift = await response.json()
-        const allEmpsData = await fetch('http://127.0.0.1:8000/team/getAll' , {
+        const allEmpsData = await fetch('/team/getAll' , {
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -181,7 +181,7 @@ async function displayShift(shiftID) {
 
 
 async function assignToShift(shiftID, employeeID) {
-    const response = await fetch('http://127.0.0.1:8000/shifts/assign', {
+    const response = await fetch('/shifts/assign', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
@@ -209,7 +209,7 @@ async function assignToShift(shiftID, employeeID) {
 }
 
 async function unassignFromShift(shiftID, employeeID) {
-    const response = await fetch('http://127.0.0.1:8000/shifts/unassign', {
+    const response = await fetch('/shifts/unassign', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
@@ -241,7 +241,7 @@ async function createShift() {
     const startingHour = document.getElementById('startingHour').value
     const endingHour = document.getElementById('endingHour').value
 
-    const response = await fetch('http://127.0.0.1:8000/shifts/create', {
+    const response = await fetch('/shifts/create', {
         method:'POST',
         headers:{
             'content-Type':'application/json',
@@ -275,7 +275,7 @@ async function editShift() {
     const startingHour = document.getElementById('editStartingHour').value
     const endingHour = document.getElementById('editEndingHour').value
 
-    const response = await fetch('http://127.0.0.1:8000/shifts/update', {
+    const response = await fetch('/shifts/update', {
         method:'PATCH',
         headers:{
             'content-Type':'application/json',
