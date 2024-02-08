@@ -20,7 +20,7 @@ cd  factory_mock_project
 Configure the app settings in the app.js and configDB.js files.
 ```
 // app.js
-const PORT = 8000 // The port your app will run on
+const PORT = 8000 // Client side code is expecting port 8000
 
 // configDB.js
 const DBname = 'factoryDB' // Your MongoDB database name
