@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-const DBname = process.env.DB_NAME || 'factoryDB'
+const DBname = process.env.DB_NAME
 
-const DBservicePort = process.env.MONGODB_SERVICE || '27017'
+const DBservicePort = process.env.MONGODB_SERVICE
 
 const connectToDB = () => {
     mongoose

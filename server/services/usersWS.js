@@ -97,7 +97,7 @@ const login = async(username, email) => {
         console.log(myUser)
         if ( myUser && myUser.email=== email) {
             const myCustomUser = await getByCustomID(myUser.id)
-            const secretKey = process.env.SECRET_KEY || "secret"
+            const secretKey = process.env.APP_SECRET_KEY
             const token = jwt.sign({myCustomUser}, secretKey )
             console.log(myCustomUser)
             const userData = {
@@ -122,7 +122,7 @@ const validateAction = async (req, res, next) => {
     try{
         const accessToken = req.headers["accesstoken"]
         const countAction = req.headers['count-action']
-        const secertKey = process.env.SECRET_KEY || "secret"
+        const secertKey = process.env.APP_SECRET_KEY
         const {myCustomUser} = jwt.verify(accessToken, secertKey)
         console.log(myCustomUser)
         if (countAction==='true') {

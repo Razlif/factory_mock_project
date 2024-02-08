@@ -6,7 +6,7 @@ const shiftsRouter = require('./server/routers/shiftsRouter')
 const usersRouter = require('./server/routers/usersRouter')
 const connectToDB = require('./server/dbConfig/dbConfig')
 const app = express()
-const PORT = process.env.APP_PORT || 8000
+const PORT = process.env.APP_PORT
 
 connectToDB()
 
