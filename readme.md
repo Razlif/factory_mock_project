@@ -16,15 +16,14 @@ git clone https://github.com/Razlif/factory_mock_project.git
 cd factory_mock_project
 ```
 
-Configure the app settings in the app.js and configDB.js files, or add the relevant env variables.
+Configure the enviroment variables.
 
 ```
-// app.js
-const  PORT  =  process.env.APP_PORT  ||  8000
+set APP_SECRET_KEY=your_secret_key
+set MONGODB_SERVICE=27017 // mongodb port by defualt is set to 27017
+set APP_PORT=8000 // main port for the app
+set DB_NAME=factoryDB // name of your database
 
-// configDB.js
-const  DBname  =  process.env.DB_NAME  ||  'factoryDB' // Your MongoDB database name
-const  DBservicePort  =  process.env.MONGODB_SERVICE  ||  '27017' // Your MongoDB connection port
 ```
 
 Then copy the users file from data/users.json and add the documents into the users collection on mongoDB. (the file is added for your convenience and can be deleted after running the project for the first time.)
