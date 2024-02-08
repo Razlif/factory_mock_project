@@ -4,20 +4,25 @@ const actionsRepo = require('../repositories/actionsRepo')
 const jwt = require("jsonwebtoken")
 
 const getAll = async () => {
-
-    const allUsers = await usersRepo.getAll()
-    const integratedData =[]
-    for (const user of allUsers) {
-        const userObject = user.toObject()
-        const dailyActionsLeft = await getActionsLeft(userObject.customID)
-        const myData = {
-        user:userObject,
-        actionsLeft:dailyActionsLeft
+    try {
+        const allUsers = await usersRepo.getAll()
+        const integratedData =[]
+        for (const user of allUsers) {
+            const userObject = user.toObject()
+            const dailyActionsLeft = await getActionsLeft(userObject.customID)
+            const myData = {
+            user:userObject,
+            actionsLeft:dailyActionsLeft
+        }
+        integratedData.push(myData)
+        }
+    
+        return integratedData
+    } catch (error) {
+        console.log("An error occurred:", error)
+        return []
     }
-    integratedData.push(myData)
-    }
 
-    return integratedData
 }
 
 const getByID = (userID) => {
@@ -41,23 +46,32 @@ const deleteUser = (userID) => {
 }
 
 const getActionsLeft = async (userCustomID) => {
-    const actionsFile = await actionsRepo.getAll()
-    console.log(actionsFile)
-    console.log(userCustomID)
-    const myUser = await usersRepo.getByCustomID(userCustomID)
-    console.log(myUser) 
-    const maxActions = myUser.numOfActions
-    const today = new Date().toLocaleDateString()
-    const userActionsToday = actionsFile.actions.filter(action => action.id===userCustomID && action.date === today)
-    console.log(userActionsToday.length) 
-    const actionsLeft = maxActions - userActionsToday.length
-    console.log(actionsLeft) 
-    return { actionsLeft, maxActions }
+    let actionsLeft
+    let maxActions
+    try {
+        actionsFile = await actionsRepo.getAll()
+        console.log(actionsFile)
+        console.log(userCustomID)
+        const myUser = await usersRepo.getByCustomID(userCustomID)
+        console.log(myUser) 
+        maxActions = myUser.numOfActions
+        const today = new Date().toLocaleDateString()
+        const userActionsToday = actionsFile.actions.filter(action => action.id===userCustomID && action.date === today)
+        console.log(userActionsToday.length) 
+        const actionsLeft = maxActions - userActionsToday.length
+        console.log(actionsLeft) 
+        return { actionsLeft, maxActions }
+    } catch (error) {
+        console.log("An error occurred:", error)
+        return { actionsLeft, maxActions }
+    }
+ 
 
 }
 
 
 const addAction = async (userCustomID, actionsLeft, maxActions) => {
+
     console.log('adding action')
     const actionsFile = await actionsRepo.getAll()
     const today = new Date().toLocaleDateString()
@@ -70,6 +84,8 @@ const addAction = async (userCustomID, actionsLeft, maxActions) => {
     console.log(newAction)
     actionsFile.actions.push(newAction)
     return actionsRepo.writeAll(actionsFile)
+
+
 
 }
 

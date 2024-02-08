@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/allData', usersWS.validateAction, async (req,res) => {
     const allDept = await deptWS.getAll()
-    res.status(200).send(allDept)
+    res.send(allDept)
     })
 
 
